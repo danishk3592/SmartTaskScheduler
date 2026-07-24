@@ -26,4 +26,10 @@ public class UserService {
 
         return repository.registerUser(user);
     }
+
+    public User login(String email, String password) {
+
+        return repository.loginUser(email, password);
+
+    }
 }

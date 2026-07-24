@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import java.sql.ResultSet;
+import com.danish.model.User;
+
 public class UserRepository {
 
     public boolean registerUser(User user) {
@@ -28,5 +31,36 @@ public class UserRepository {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public User loginUser(String email, String password) {
+
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+            statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+
+                User user = new User();
+
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setFullName(resultSet.getString("full_name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+
+                return user;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
