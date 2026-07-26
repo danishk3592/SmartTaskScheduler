@@ -24,6 +24,11 @@ public class UserService {
             return false;
         }
 
+        if (repository.emailExists(user.getEmail())) {
+            System.out.println("Email already exists.");
+            return false;
+        }
+
         return repository.registerUser(user);
     }
 

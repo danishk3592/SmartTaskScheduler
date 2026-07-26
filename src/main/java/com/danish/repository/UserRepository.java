@@ -63,4 +63,24 @@ public class UserRepository {
 
         return null;
     }
+
+    public boolean emailExists(String email) {
+
+        String sql = "SELECT email FROM users WHERE email = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, email);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

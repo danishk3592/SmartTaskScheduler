@@ -12,57 +12,80 @@ public class ConsoleUI {
 
     public void start() {
 
-        System.out.println("========== SMART TASK SCHEDULER ==========");
-        System.out.println("1. Register");
-        System.out.println("2. Login");
-        System.out.println("3. Exit");
-        System.out.print("Choose option: ");
+        while (true) {
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+            System.out.println("\n========== SMART TASK SCHEDULER ==========");
+            System.out.println("1. Register");
+            System.out.println("2. Login");
+            System.out.println("3. Exit");
+            System.out.print("Choose option: ");
 
-        if (choice == 1) {
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-            System.out.print("Full Name: ");
-            String name = scanner.nextLine();
+            switch (choice) {
 
-            System.out.print("Email: ");
-            String email = scanner.nextLine();
+                case 1:
 
-            System.out.print("Password: ");
-            String password = scanner.nextLine();
+                    System.out.print("Full Name: ");
+                    String name = scanner.nextLine();
 
-            User user = new User(name, email, password);
+                    System.out.print("Email: ");
+                    String email = scanner.nextLine();
 
-            boolean success = service.register(user);
+                    System.out.print("Password: ");
+                    String password = scanner.nextLine();
 
-            if (success) {
-                System.out.println("✅ Registration Successful!");
-            } else {
-                System.out.println("❌ Registration Failed!");
-            }
-        }
+                    User newUser = new User(name, email, password);
 
-        else if (choice == 2) {
+                    boolean success = service.register(newUser);
 
-            System.out.print("Email: ");
-            String email = scanner.nextLine();
+                    if (success) {
+                        System.out.println("\nRegistration Successful!");
+                    } else {
+                        System.out.println("\nRegistration Failed!");
+                    }
+                    break;
 
-            System.out.print("Password: ");
-            String password = scanner.nextLine();
+                case 2:
 
-            User user = service.login(email, password);
+                    System.out.print("Email: ");
+                    email = scanner.nextLine();
 
-            if (user != null) {
+                    System.out.print("Password: ");
+                    password = scanner.nextLine();
 
-                System.out.println("\n==================================");
-                System.out.println("Welcome " + user.getFullName());
-                System.out.println("Login Successful!");
-                System.out.println("==================================");
+                    User loggedInUser = service.login(email, password);
 
-            } else {
+                    if (loggedInUser != null) {
 
-                System.out.println("Invalid Email or Password!");
+                        System.out.println("\n==================================");
+                        System.out.println("Welcome " + loggedInUser.getFullName());
+                        System.out.println("Login Successful!");
+                        System.out.println("==================================");
+
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.show(loggedInUser);
+
+                        // After logout, execution returns here and the loop
+                        // automatically shows the main menu again.
+
+                    } else {
+
+                        System.out.println("\n Invalid Email or Password!");
+
+                    }
+                    break;
+
+                case 3:
+
+                    System.out.println("\nThank you for using Smart Task Scheduler!");
+                    System.out.println("Goodbye 👋");
+                    return;
+
+                default:
+
+                    System.out.println("\nInvalid Choice! Please try again.");
 
             }
         }
