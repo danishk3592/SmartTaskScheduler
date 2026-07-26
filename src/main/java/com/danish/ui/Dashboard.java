@@ -1,7 +1,7 @@
 package com.danish.ui;
-
+import com.danish.ui.TaskUI;
 import com.danish.model.User;
-
+import com.danish.ui.TaskUI;
 import java.util.Scanner;
 
 public class Dashboard {
@@ -12,44 +12,53 @@ public class Dashboard {
 
         while (true) {
 
-            System.out.println("\n=================================");
-            System.out.println("Welcome " + user.getFullName());
-            System.out.println("=================================");
+            System.out.println("\n========================================");
+            System.out.println("        SMART TASK SCHEDULER");
+            System.out.println("========================================");
+            System.out.println("Logged in as : " + user.getFullName());
 
-            System.out.println("1. Add Task");
-            System.out.println("2. View Tasks");
-            System.out.println("3. Update Task");
-            System.out.println("4. Delete Task");
-            System.out.println("5. Logout");
+            System.out.println("\n1. Task Management");
+            System.out.println("2. Categories");
+            System.out.println("3. Workflow");
+            System.out.println("4. Reports");
+            System.out.println("5. Analytics");
+            System.out.println("6. Logout");
 
-            System.out.print("Choose Option: ");
+            System.out.print("\nChoose Option: ");
 
             int choice = scanner.nextInt();
 
             switch (choice) {
 
                 case 1:
-                    System.out.println("Add Task Module (Coming Next)");
+
+                    TaskManagementMenu menu = new TaskManagementMenu();
+                    menu.show(user);
+
                     break;
 
                 case 2:
-                    System.out.println("View Task Module (Coming Next)");
+                    System.out.println("Categories Module (Coming Soon)");
                     break;
 
                 case 3:
-                    System.out.println("Update Task Module (Coming Next)");
+                    System.out.println("Workflow Module (Coming Soon)");
                     break;
 
                 case 4:
-                    System.out.println("Delete Task Module (Coming Next)");
+                    System.out.println("Reports Module (Coming Soon)");
                     break;
 
                 case 5:
+                    System.out.println("Analytics Module (Coming Soon)");
+                    break;
+
+                case 6:
                     System.out.println("Logged Out Successfully!");
                     return;
 
                 default:
-                    System.out.println("Invalid Choice");
+                    System.out.println("Invalid Choice!");
             }
         }
     }
