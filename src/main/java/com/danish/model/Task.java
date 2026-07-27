@@ -15,6 +15,26 @@ public class Task {
     private TaskStatus status;
     private LocalDateTime dueDate;
 
+    private String categoryName;
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    private int categoryId;
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public Task() {
     }
 

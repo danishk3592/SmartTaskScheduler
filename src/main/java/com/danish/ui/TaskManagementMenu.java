@@ -19,7 +19,9 @@ public class TaskManagementMenu {
             System.out.println("3. Update Task");
             System.out.println("4. Delete Task");
             System.out.println("5. Search Task");
-            System.out.println("6. Back");
+            System.out.println("6. Filter Tasks");
+            System.out.println("7. Change Task Status");
+            System.out.println("8. Back"); //change back to filter task
 
             System.out.print("Choose Option: ");
 
@@ -37,22 +39,30 @@ public class TaskManagementMenu {
                     break;
 
                 case 3:
-                    System.out.println("Update Task Module (Coming Next)");
+                    taskUI.updateTask(user);
                     break;
 
                 case 4:
-                    System.out.println("Delete Task Module (Coming Next)");
+                    taskUI.deleteTask(user);
                     break;
 
                 case 5:
-                    System.out.println("Search Task Module (Coming Next)");
+                    taskUI.searchTask(user);
                     break;
 
                 case 6:
+                    taskUI.filterTasks(user);
+                    break;
+
+                case 7:
+                    taskUI.changeTaskStatus(user);
+                    break;
+
+                case 8:
                     return;
 
                 default:
-                    System.out.println("Invalid Choice!");
+                System.out.println("Invalid Choice!");
             }
         }
     }

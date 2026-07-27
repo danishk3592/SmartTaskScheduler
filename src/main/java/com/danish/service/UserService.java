@@ -1,11 +1,12 @@
 package com.danish.service;
 
+import com.danish.util.PasswordUtil;
 import com.danish.model.User;
 import com.danish.repository.UserRepository;
-
+import com.danish.repository.interfaces.IUserRepository;
 public class UserService {
 
-    private final UserRepository repository = new UserRepository();
+    private final IUserRepository repository = new UserRepository();
 
     public boolean register(User user) {
 
@@ -29,12 +30,25 @@ public class UserService {
             return false;
         }
 
+        user.setPassword(
+                PasswordUtil.hashPassword(user.getPassword())
+        );
+
         return repository.registerUser(user);
     }
 
     public User login(String email, String password) {
 
-        return repository.loginUser(email, password);
+        User user = repository.findByEmail(email);
 
+        if (user == null) {
+            return null;
+        }
+
+        if (PasswordUtil.verifyPassword(password, user.getPassword())) {
+            return user;
+        }
+
+        return null;
     }
 }

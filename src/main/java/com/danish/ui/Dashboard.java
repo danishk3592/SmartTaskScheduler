@@ -1,8 +1,15 @@
 package com.danish.ui;
+
+import com.danish.model.DashboardStats;
+import com.danish.service.AnalyticsService;
+import com.danish.ui.ReportsUI;
+import com.danish.service.ReminderService;
+
 import com.danish.ui.TaskUI;
 import com.danish.model.User;
 import com.danish.ui.TaskUI;
 import java.util.Scanner;
+import com.danish.ui.AnalyticsUI;
 
 public class Dashboard {
 
@@ -10,7 +17,28 @@ public class Dashboard {
 
     public void show(User user) {
 
+        AnalyticsService analyticsService = new AnalyticsService();
+
+
+        ReminderService reminderService = new ReminderService();
+
+        reminderService.checkDueTasks(user.getUserId());
+
         while (true) {
+
+            DashboardStats stats =
+                    analyticsService.getDashboardStats(user.getUserId());
+
+            System.out.println("\n========== DASHBOARD ==========");
+
+            System.out.println("📋 Total Tasks      : " + stats.getTotalTasks());
+            System.out.println("⏳ Pending          : " + stats.getPendingTasks());
+            System.out.println("🔄 In Progress      : " + stats.getInProgressTasks());
+            System.out.println("✅ Completed        : " + stats.getCompletedTasks());
+            System.out.println("🔥 High Priority    : " + stats.getHighPriorityTasks());
+            System.out.println("📅 Due Today        : " + stats.getDueTodayTasks());
+
+            System.out.println("===============================\n");
 
             System.out.println("\n========================================");
             System.out.println("        SMART TASK SCHEDULER");
@@ -38,7 +66,8 @@ public class Dashboard {
                     break;
 
                 case 2:
-                    System.out.println("Categories Module (Coming Soon)");
+                    CategoryUI categoryUI = new CategoryUI();
+                    categoryUI.show();
                     break;
 
                 case 3:
@@ -46,11 +75,17 @@ public class Dashboard {
                     break;
 
                 case 4:
-                    System.out.println("Reports Module (Coming Soon)");
+
+                    ReportsUI reportsUI = new ReportsUI();
+                    reportsUI.show(user);
+
                     break;
 
                 case 5:
-                    System.out.println("Analytics Module (Coming Soon)");
+
+                    AnalyticsUI analyticsUI = new AnalyticsUI();
+                    analyticsUI.show(user);
+
                     break;
 
                 case 6:
