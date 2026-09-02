@@ -37,3 +37,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Local database configuration
+src/main/resources/db.properties
+
+# Environment files
+.env
