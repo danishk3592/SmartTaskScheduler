@@ -1,32 +1,39 @@
-# SmartTaskScheduler
+# Smart Task Scheduler
 
-> Not just a To-Do Application, it's an enhanced Task Scheduler.
+A Java-based task management and productivity application designed to help users create, organize, track, analyze, and manage tasks efficiently.
 
-SmartTaskScheduler is a Java-based task management application designed to help users efficiently organize, manage, track, and prioritize their daily tasks.
-
-The application uses a layered architecture with Java, JDBC, MySQL, and Maven to provide reliable task management and database-driven functionality.
+The application provides task management, workflow tracking, analytics, reports, automated reminders, email notifications, and CSV/PDF export functionality.
 
 ---
 
 ## 🚀 Features
 
-### 👤 User Management
+### 🔐 User Authentication
 - User registration
-- Secure user login
-- Password hashing using BCrypt
+- Secure login
+- Password hashing
 - User-specific task management
 
-### 📝 Task Management
-- Add new tasks
-- View all tasks
-- Update existing tasks
+### 📋 Task Management
+- Create tasks
+- View tasks
+- Update tasks
 - Delete tasks
-- Change task status
-- Set task priority
-- Set task due dates
+- Search tasks
+- Filter tasks
+- Task priorities
+- Task descriptions
+- Due dates
 
-### 🗂️ Task Categories
-Tasks can be organized into predefined categories:
+### 🔄 Task Workflow
+
+Tasks can move through different states:
+
+PENDING → IN_PROGRESS → COMPLETED
+
+### 🗂️ Categories
+
+Tasks can be organized using categories such as:
 
 - Work
 - Study
@@ -34,65 +41,94 @@ Tasks can be organized into predefined categories:
 - Health
 - Shopping
 
-### 🔎 Search & Filtering
-- Search tasks by keyword
-- Filter by task status
-- Filter by priority
-- View pending tasks
-- View in-progress tasks
-- View completed tasks
+### 📊 Dashboard & Analytics
 
-### 📊 Analytics
-- Task statistics
-- Task progress tracking
-- Category-based task information
+The dashboard provides:
+
+- Total tasks
+- Pending tasks
+- In-progress tasks
+- Completed tasks
+- High-priority tasks
+- Tasks due today
+
+### 📧 Email Reminders
+
+The application can identify pending/overdue tasks and send reminder emails to the logged-in user.
+
+### 📑 Reports
+
+Generate reports for:
+
+- All tasks
+- Pending tasks
+- Completed tasks
+- High-priority tasks
+- Today's tasks
+
+### 📤 Export
+
+Export task reports as:
+
+- CSV
+- PDF
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Tech Stack
 
 | Technology | Purpose |
-|------------|---------|
-| Java | Application development |
+|---|---|
+| Java | Core application |
 | JDBC | Database connectivity |
-| MySQL | Relational database |
+| MySQL | Database |
 | Maven | Dependency management |
-| IntelliJ IDEA | Development environment |
-| Git & GitHub | Version control |
-| BCrypt | Password hashing |
+| Jakarta Mail | Email notifications |
+| Apache PDFBox | PDF generation |
+| Git | Version control |
+| GitHub | Project hosting |
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Architecture
 
 The project follows a layered architecture:
 
+UI Layer
+↓
+Service Layer
+↓
+Repository Layer
+↓
+Database
+
+### Main Layers
+
+**UI**
+- Handles user interaction and menus.
+
+**Service**
+- Contains application/business logic.
+
+**Repository**
+- Handles database operations using JDBC.
+
+**Model**
+- Represents application entities.
+
+**Notification**
+- Handles email functionality.
+
+**Export**
+- Handles CSV and PDF report generation.
+
+---
+
+## 🗄️ Database
+
+The application uses MySQL.
+
+Database:
+
 ```text
-SmartTaskScheduler
-│
-├── config
-│   └── DatabaseConnection
-│
-├── enums
-│   ├── Priority
-│   └── TaskStatus
-│
-├── model
-│   ├── User
-│   └── Task
-│
-├── repository
-│   ├── UserRepository
-│   ├── TaskRepository
-│   └── ...
-│
-├── service
-│   ├── UserService
-│   └── TaskService
-│
-├── ui
-│   ├── LoginUI
-│   ├── TaskUI
-│   └── ...
-│
-└── Main.java
+smart_task_scheduler
