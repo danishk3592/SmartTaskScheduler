@@ -1,45 +1,58 @@
+# Maven
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+# IntelliJ IDEA
+.idea/
 *.iml
+*.iws
 *.ipr
 
-### Eclipse ###
-.apt_generated
+# Eclipse
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
+.settings/
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# VS Code
 .vscode/
 
-### Mac OS ###
+# Java
+*.class
+
+# Logs
+*.log
+
+# OS files
 .DS_Store
+Thumbs.db
 
-# Local database configuration
-src/main/resources/db.properties
+# Generated reports
+exports/*
+!exports/.gitkeep
 
-# Environment files
+pdfs/*
+!pdfs/.gitkeep
+
+# Environment / credentials
 .env
+.env.*
+application-local.properties
+
+# Database credentials
+db.properties
+
+# Email credentials
+MailConfig.java
+
+# Email credentials
+src/main/java/com/danish/notification/MailConfig.java

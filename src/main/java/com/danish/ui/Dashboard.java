@@ -1,15 +1,11 @@
 package com.danish.ui;
 
 import com.danish.model.DashboardStats;
+import com.danish.model.User;
 import com.danish.service.AnalyticsService;
-import com.danish.ui.ReportsUI;
 import com.danish.service.ReminderService;
 
-import com.danish.ui.TaskUI;
-import com.danish.model.User;
-import com.danish.ui.TaskUI;
 import java.util.Scanner;
-import com.danish.ui.AnalyticsUI;
 
 public class Dashboard {
 
@@ -18,11 +14,10 @@ public class Dashboard {
     public void show(User user) {
 
         AnalyticsService analyticsService = new AnalyticsService();
-
-
         ReminderService reminderService = new ReminderService();
 
-        reminderService.checkDueTasks(user.getUserId());
+        // Check task reminders
+        reminderService.checkDueTasks(user);
 
         while (true) {
 
@@ -40,7 +35,7 @@ public class Dashboard {
 
             System.out.println("===============================\n");
 
-            System.out.println("\n========================================");
+            System.out.println("========================================");
             System.out.println("        SMART TASK SCHEDULER");
             System.out.println("========================================");
             System.out.println("Logged in as : " + user.getFullName());
@@ -55,14 +50,13 @@ public class Dashboard {
             System.out.print("\nChoose Option: ");
 
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
 
                 case 1:
-
                     TaskManagementMenu menu = new TaskManagementMenu();
                     menu.show(user);
-
                     break;
 
                 case 2:
@@ -71,21 +65,18 @@ public class Dashboard {
                     break;
 
                 case 3:
-                    System.out.println("Workflow Module (Coming Soon)");
+                    WorkflowUI workflowUI = new WorkflowUI();
+                    workflowUI.show(user);
                     break;
 
                 case 4:
-
                     ReportsUI reportsUI = new ReportsUI();
-                    reportsUI.show(user);
-
+                    reportsUI.showReports(user);
                     break;
 
                 case 5:
-
                     AnalyticsUI analyticsUI = new AnalyticsUI();
                     analyticsUI.show(user);
-
                     break;
 
                 case 6:
